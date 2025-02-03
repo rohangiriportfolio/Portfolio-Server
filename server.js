@@ -21,7 +21,7 @@ app.use(cors({
     origin: "https://portfolio-clientapp.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
-    sameSite: 'None', // Allows cross-site cookies
+    sameSite: 'Strict', // Allows cross-site cookies
     secure: true 
 }));
 app.set('trust proxy', 1); // Trust the first proxy
@@ -58,9 +58,9 @@ app.get("/api/data", async (req, res) => {
         image:profile.picture,
     }
     res.cookie('user', profile, {
-      httpOnly: true,
+      httpOnly: false,
       secure: true, // Ensures the cookie is only sent over HTTPS
-      sameSite: 'None', // Required if you're dealing with cross-site cookies
+      sameSite: 'Strict', // Required if you're dealing with cross-site cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       domain: '.vercel.app',
     }); 
