@@ -24,7 +24,6 @@ app.use(cors({
     sameSite: 'Strict', // Allows cross-site cookies
     secure: true 
 }));
-app.set('trust proxy', 1); // Trust the first proxy
 
 app.use(express.json());
 
@@ -62,7 +61,6 @@ app.get("/api/data", async (req, res) => {
       secure: true, // Ensures the cookie is only sent over HTTPS
       sameSite: 'Strict', // Required if you're dealing with cross-site cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      domain: '.vercel.app',
     }); 
         console.log(req.cookies.user);
     res.status(200).json({ message: "User saved" });
