@@ -56,6 +56,7 @@ app.get("/api/data", async (req, res) => {
         email:profile.email,
         image:profile.picture,
     }
+        console.log(profile);
     res.cookie('user', profile, {
       httpOnly: true,
       secure: true, // Ensures the cookie is only sent over HTTPS
