@@ -56,7 +56,12 @@ app.get("/api/data", async (req, res) => {
         email:profile.email,
         image:profile.picture,
     }
-    res.cookie('user', profile); 
+    res.cookie('user', profile, {
+      httpOnly: true,
+      secure: true, // Ensures the cookie is only sent over HTTPS
+      sameSite: 'None', // Required if you're dealing with cross-site cookies
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    }); 
     res.status(200).json({ message: "User saved" });
     } catch (error) {
         console.error("Error saving data:", error);
