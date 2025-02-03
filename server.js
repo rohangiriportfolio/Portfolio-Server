@@ -18,7 +18,7 @@ const cookieParser = require('cookie-parser');
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://portfolio-clientapp.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -142,7 +142,7 @@ app.post('/disLikes/submit', async (req, res) => {
 
 app.get("/logout", (req, res) => {
     res.clearCookie('user', { path: '/' }); 
-    res.status(200).redirect("http://localhost:3000");
+    res.status(200).redirect("https://portfolio-clientapp.vercel.app");
   });
 
 app.listen(PORT, () => {
