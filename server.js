@@ -65,7 +65,7 @@ app.get("/api/data", async (req, res) => {
 app.get("/login/success", (req, res) => {
     const user = JSON.stringify(req.cookies.user); 
     // res.send(req.cookies.user); 
-    // console.log('TestUser: ', user);
+    console.log('TestUser: ', user);
     if (user) {
         res.status(200).json({user});
     } else {
