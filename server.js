@@ -56,7 +56,6 @@ app.get("/api/data", async (req, res) => {
         email:profile.email,
         image:profile.picture,
     }
-        console.log(profile);
     res.cookie('user', profile, {
       httpOnly: true,
       secure: true, // Ensures the cookie is only sent over HTTPS
@@ -64,6 +63,7 @@ app.get("/api/data", async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       domain: 'portfolio-serverapp.vercel.app',
     }); 
+        console.log(req.cookies.user);
     res.status(200).json({ message: "User saved" });
     } catch (error) {
         console.error("Error saving data:", error);
