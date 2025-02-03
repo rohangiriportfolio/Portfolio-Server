@@ -20,7 +20,9 @@ const cookieParser = require('cookie-parser');
 app.use(cors({
     origin: "https://portfolio-clientapp.vercel.app",
     methods: "GET,POST,PUT,DELETE",
-    credentials: true
+    credentials: true,
+    sameSite: 'None', // Allows cross-site cookies
+    secure: true 
 }));
 
 app.use(express.json());
