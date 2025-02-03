@@ -61,6 +61,7 @@ app.get("/api/data", async (req, res) => {
       secure: true, // Ensures the cookie is only sent over HTTPS
       sameSite: 'None', // Required if you're dealing with cross-site cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
+      domain: 'portfolio-serverapp.vercel.app',
     }); 
     res.status(200).json({ message: "User saved" });
     } catch (error) {
