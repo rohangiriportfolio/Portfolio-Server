@@ -7,7 +7,7 @@ const PORT = process.env.PORT;
 const userdb = require("./model/userSchema");
 const commentdb = require("./model/commentSchema");
 const cookieParser = require('cookie-parser');
-
+const session = require('express-session');
 
 app.use(session({
     secret:"JaiShreeRam",
