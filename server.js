@@ -9,12 +9,12 @@ const commentdb = require("./model/commentSchema");
 const cookieParser = require('cookie-parser');
 
 
-// app.use(session({
-//     secret:"JaiShreeRam",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { secure: false }, // Set to true in production with HTTPS
-// }));
+app.use(session({
+    secret:"JaiShreeRam",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true }, // Set to true in production with HTTPS
+}));
 
 
 app.use(cors({
