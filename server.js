@@ -21,7 +21,7 @@ app.use(cors({
     origin: "https://portfolio-clientapp.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
-    sameSite: 'Strict', // Allows cross-site cookies
+    sameSite: 'None', // Allows cross-site cookies
     secure: true 
 }));
 
