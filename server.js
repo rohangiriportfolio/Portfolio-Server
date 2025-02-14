@@ -154,7 +154,7 @@ app.post('/disLikes/submit', async (req, res) => {
 // })
 
 app.get("/logout", (req, res) => {
-    res.clearCookie('user', { path: '/' }); 
+    res.clearCookie('token', { path: '/' }); 
     res.status(200).redirect("https://portfolio-client-bay-seven.vercel.app/");
   });
 
