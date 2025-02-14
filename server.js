@@ -60,7 +60,14 @@ app.post("/api/data", async (req, res) => {
     }
     // res.cookie('user', profile); 
     const token = jwtToken.sign(profile,"JaiShreeRam");
-    res.status(200).cookie("token", token).send('https://portfolio-client-bay-seven.vercel.app/');
+    res.status(200)
+   .cookie("token", token, {
+       httpOnly: true,
+       secure: true,
+       sameSite: "None"
+   })
+   .redirect('https://portfolio-client-bay-seven.vercel.app/');
+
     // res.status(200).json({ message: "User saved" });
     } catch (error) {
         console.error("Error saving data:", error);
