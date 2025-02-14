@@ -19,7 +19,7 @@ const validateCookie = require('./middle/jwtMiddle');
 
 
 app.use(cors({
-    origin: "https://portfolio-client-bay-seven.vercel.app/",
+    origin: "https://portfolio-client-bay-seven.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -66,7 +66,7 @@ app.post("/api/data", async (req, res) => {
        secure: true,
        sameSite: "None"
    })
-   .redirect('https://portfolio-client-bay-seven.vercel.app/');
+   .send('https://portfolio-client-bay-seven.vercel.app');
 
     // res.status(200).json({ message: "User saved" });
     } catch (error) {
