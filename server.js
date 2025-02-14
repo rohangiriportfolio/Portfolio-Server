@@ -3,7 +3,7 @@ require("./db/conn");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const PORT = 5000;
+const PORT = 5000 || process.env.PORT;
 const userdb = require("./model/userSchema");
 const commentdb = require("./model/commentSchema");
 const cookieParser = require('cookie-parser');
