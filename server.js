@@ -19,7 +19,7 @@ const validateCookie = require('./middle/jwtMiddle');
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://portfolio-client-bay-seven.vercel.app/",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -36,22 +36,22 @@ app.post("/api/data", async (req, res) => {
     let profile = req.body;
       console.log("Received data:", profile.sub);
   
-    //   // Make sure userdb is correctly imported and connected to MongoDB
-    //   let user = await userdb.findOne({ googleId: profile.sub });
+      // Make sure userdb is correctly imported and connected to MongoDB
+      let user = await userdb.findOne({ googleId: profile.sub });
   
-    //   if (!user) {
-    //     user = new userdb({
-    //       googleId: profile.sub,
-    //       displayName: profile.name,
-    //       email: profile.email,
-    //       image: profile.picture,
-    //     });
+      if (!user) {
+        user = new userdb({
+          googleId: profile.sub,
+          displayName: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        });
   
-    //     await user.save(); // Wait for the save operation
-    //     console.log("User saved to MongoDB:", user);
-    //   } else {
-    //     console.log("User already exists:", user);
-    //   }
+        await user.save(); // Wait for the save operation
+        console.log("User saved to MongoDB:", user);
+      } else {
+        console.log("User already exists:", user);
+      }
     profile={
         googleId:profile.sub,
         displayName:profile.name,
@@ -60,7 +60,7 @@ app.post("/api/data", async (req, res) => {
     }
     // res.cookie('user', profile); 
     const token = jwtToken.sign(profile,"JaiShreeRam");
-    res.status(200).cookie("token", token).send('http://localhost:3000');
+    res.status(200).cookie("token", token).send('https://portfolio-client-bay-seven.vercel.app/');
     // res.status(200).json({ message: "User saved" });
     } catch (error) {
         console.error("Error saving data:", error);
@@ -148,7 +148,7 @@ app.post('/disLikes/submit', async (req, res) => {
 
 app.get("/logout", (req, res) => {
     res.clearCookie('user', { path: '/' }); 
-    res.status(200).redirect("http://localhost:3000");
+    res.status(200).redirect("https://portfolio-client-bay-seven.vercel.app/");
   });
 
 app.listen(PORT, () => {
