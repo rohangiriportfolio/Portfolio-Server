@@ -110,7 +110,7 @@ app.post('/comments/submit', (req, res) => {
     console.log(text, userdata);
     let comment = new commentdb({
         googleId: userdata.googleId,
-        displayName: userdata.displayName,
+        displayName: userdata.displayName||'Visitor',
         image: userdata.image,
         comment: text,
         like: [],
@@ -124,13 +124,13 @@ app.post('/comments/submit', (req, res) => {
 app.post('/likes/submit', async (req, res) => {
     const { cardId, userdata } = req.body;
     const id = await commentdb.findById(cardId);
-    if (id.like.includes(userdata._id)) {
-        id.like = id.like.filter(id => id !== userdata._id);
+    if (id.like.includes(userdata.googleId)) {
+        id.like = id.like.filter(id => id !== userdata.googleId);
         await id.save();
         res.send({ message: 'false' });
     }
     else {
-        id.like.push(userdata._id);
+        id.like.push(userdata.googleId);
         await id.save();
         res.send({ message: 'true' });
     }
@@ -139,13 +139,14 @@ app.post('/likes/submit', async (req, res) => {
 app.post('/disLikes/submit', async (req, res) => {
     const { cardId, userdata } = req.body;
     const id = await commentdb.findById(cardId);
-    if (id.disLike.includes(userdata._id)) {
-        id.disLike = id.disLike.filter(id => id !== userdata._id);
+    // console.log(userdata);
+    if (id.disLike.includes(userdata.googleId)) {
+        id.disLike = id.disLike.filter(id => id !== userdata.googleId);
         await id.save();
         res.send({ message: 'false' });
     }
     else {
-        id.disLike.push(userdata._id);
+        id.disLike.push(userdata.googleId);
         await id.save();
         res.send({ message: 'true' });
     }
