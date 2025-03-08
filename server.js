@@ -123,6 +123,7 @@ app.post('/comments/submit', (req, res) => {
 
 app.post('/likes/submit', async (req, res) => {
     const { cardId, userdata } = req.body;
+    console.log(userdata);
     const id = await commentdb.findById(cardId);
     if (id.like.includes(userdata.googleId)) {
         id.like = id.like.filter(id => id !== userdata.googleId);
