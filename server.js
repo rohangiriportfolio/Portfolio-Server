@@ -123,15 +123,15 @@ app.post('/comments/submit', (req, res) => {
 
 app.post('/likes/submit', async (req, res) => {
     const { cardId, userdata } = req.body;
-    console.log(userdata);
     const id = await commentdb.findById(cardId);
-    if (id.like.includes(userdata.googleId)) {
-        id.like = id.like.filter(id => id !== userdata.googleId);
+    const userId = userdata.googleId !== undefined ? userdata.googleId : '1';
+    if (id.like.includes(userId)) {
+        id.like = id.like.filter(id => id !== userId);
         await id.save();
         res.send({ message: 'false' });
     }
     else {
-        id.like.push(userdata.googleId);
+        id.like.push(userId);
         await id.save();
         res.send({ message: 'true' });
     }
@@ -140,25 +140,18 @@ app.post('/likes/submit', async (req, res) => {
 app.post('/disLikes/submit', async (req, res) => {
     const { cardId, userdata } = req.body;
     const id = await commentdb.findById(cardId);
-    // console.log(userdata);
-    if (id.disLike.includes(userdata.googleId)) {
-        id.disLike = id.disLike.filter(id => id !== userdata.googleId);
+    const userId = userdata.googleId !== undefined ? userdata.googleId : '2';
+    if (id.disLike.includes(userId)) {
+        id.disLike = id.disLike.filter(dislike => dislike !== userId);
         await id.save();
         res.send({ message: 'false' });
-    }
-    else {
-        id.disLike.push(userdata.googleId);
+    } else {
+        id.disLike.push(userId);
         await id.save();
         res.send({ message: 'true' });
     }
 });
 
-// app.get("/logout", (req, res, next) => {
-//     req.logout(function (err) {
-//         if (err) { return next(err) }
-//         res.redirect("http://localhost:3000");
-//     })
-// })
 
 app.get("/logout", (req, res) => {
     res.clearCookie('token', { path: '/' }); 
