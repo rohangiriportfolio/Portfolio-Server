@@ -10,19 +10,6 @@ const cookieParser = require('cookie-parser');
 const jwtToken = require('jsonwebtoken');
 const validateCookie = require('./middle/jwtMiddle');
 
-// app.use(session({
-//     secret:"JaiShreeRam",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { secure: false }, // Set to true in production with HTTPS
-// }));
-
-
-// app.use(cors({
-//     origin: "https://portfolio-client-bay-seven.vercel.app",
-//     methods: "GET,POST,PUT,DELETE",
-//     credentials: true
-// }));
 app.use(cors({
     origin: "https://rohan-giri-portfolio.vercel.app",
     methods: "GET,POST,PUT,DELETE",
