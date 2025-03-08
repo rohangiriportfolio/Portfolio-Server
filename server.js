@@ -24,7 +24,7 @@ const validateCookie = require('./middle/jwtMiddle');
 //     credentials: true
 // }));
 app.use(cors({
-    origin: "https://portfolio-flame-two-16.vercel.app",
+    origin: "https://rohan-giri-portfolio.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -71,7 +71,7 @@ app.post("/api/data", async (req, res) => {
        secure: true,
        sameSite: "None"
    })
-   .send('https://portfolio-client-bay-seven.vercel.app');
+   .send('https://rohan-giri-portfolio.vercel.app');
 
     // res.status(200).json({ message: "User saved" });
     } catch (error) {
@@ -163,7 +163,7 @@ app.post('/disLikes/submit', async (req, res) => {
 app.get("/logout", (req, res) => {
     res.clearCookie('token', { path: '/' }); 
     // res.status(200).redirect("https://portfolio-client-bay-seven.vercel.app/");
-    res.status(200).redirect("https://portfolio-flame-two-16.vercel.app/");
+    res.status(200).redirect("https://rohan-giri-portfolio.vercel.app/");
   });
 
 app.listen(PORT, () => {
